@@ -11,15 +11,17 @@ import Image from 'next/image';
 const AppBoxStatic = ({data}) => {
   return (
     <div>
-      <Card className="flex flex-row h-[200px] w-[250px] ">
-          <Image  height={100} width={100} className="rounded-xl" src={null}  alt={data.title} />
+      <Card className="flex flex-row " style={{
+        width:"300px",height:"150px"
+      }}>
+          <Image  height={100} width={150} className="rounded-xl m-2" src={null}  alt={data} />
       <CardHeader>
-          <CardTitle className="text-lg">{data.title}</CardTitle>
-          <CardDescription>{data.description}</CardDescription>
+          <CardTitle className="text-2xl">{data}</CardTitle>
+          <CardDescription>{data}</CardDescription>
       </CardHeader>
       </Card>
     </div>
-  )
+     )
 }
 
 export default AppBoxStatic

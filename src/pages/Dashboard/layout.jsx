@@ -13,8 +13,10 @@ export default function Layout({children} ) {
   return (
     <>
     <SidebarProvider>
-      <AppSidebar />
-      <SidebarTrigger />
+        <div className="flex flex-row">
+        <AppSidebar />
+        <SidebarTrigger />
+        </div>
       <main>
         {children}
       </main>

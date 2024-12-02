@@ -27,6 +27,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import TeamInfoBox from "@/Props/TeamInfoBox";
+import { Separator } from "./ui/separator";
 
 // This is sample data.
 const data = {
@@ -76,9 +77,11 @@ export function AppSidebar({ ...props }) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+      <Separator className="w-[80%] mx-[10%]" />
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
+      {/* <Separator className="w-[80%] mx-[10%]" /> */}
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
