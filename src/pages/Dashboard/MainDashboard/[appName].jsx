@@ -12,15 +12,6 @@ export default function DashboardPage() {
   const { appName } = router.query; // Get the dynamic route parameter
 
   // Define app-specific titles and details
-  const appDetails = {
-    app1: { title: "Dashboard - App 1", description: "Details for App 1" },
-    app2: { title: "Dashboard - App 2", description: "Details for App 2" },
-    default: { title: "Dashboard", description: "Generic dashboard view" },
-  };
-
-  // Fetch the app-specific details or use the default
-  const { title, description } = appDetails[appName] || appDetails.default;
-  const appData ={title,description}
 
   return (
     <Layout>

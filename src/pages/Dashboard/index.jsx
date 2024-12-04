@@ -1,11 +1,10 @@
-import { Button } from '@/components/ui/button'
 import React from 'react'
 import Layout from './layout'
 
 const DashBoard = () => {
   return (
     <Layout>
-      
+      <div>hello</div>
     </Layout>
   )
 }

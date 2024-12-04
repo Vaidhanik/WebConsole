@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 import React from "react";
 
@@ -23,7 +24,7 @@ const Login = () => {
             <Input className="my-3 w-[300px]" type='password' placeholder="password" />
         </CardContent>
         <CardFooter className="flex flex-col">
-           <a href="/ForgotPassword" className="text-blue-950 opacity-50 hover:opacity-100">forgot password</a> 
+           <Link href="/ForgotPassword" className="text-blue-950 opacity-50 hover:opacity-100">forgot password</Link> 
           <Button className="w-[100px] mt-2" type="submit">
             Submit
           </Button>

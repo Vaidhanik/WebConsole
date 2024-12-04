@@ -12,9 +12,13 @@ import {
 
 import { useEffect, useState } from "react";
 import ChartExample from "@/Props/AppCharts";
+import { Input } from "@/components/ui/input";
+import { FaSearch } from "react-icons/fa";
 const SystemAnalysis = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState("");
+  const [filter, setFilter] = useState(""); // State for filter input
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     // Fetch data from the API route
@@ -24,6 +28,7 @@ const SystemAnalysis = () => {
         if (response.ok) {
           const result = await response.json();
           setData(result);
+          setFilteredData(result);
         } else {
           setError("Failed to fetch data");
         }
@@ -35,11 +40,27 @@ const SystemAnalysis = () => {
     fetchData();
   }, []);
 
-  console.log(data);
+
+  // Filter handler
+  const handleFilterChange = (e) => {
+    const value = e.target.value;
+    setFilter(value);
+
+    // Update filtered data
+    const newFilteredData = data.filter((item) =>
+      item.app_name.toLowerCase().includes(value.toLowerCase()) ||
+      item.timestamp.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(newFilteredData);
+  };
   return (
     <Layout>
-      <div className="w-[80vw] h-screen mt-10 ml-4">
+      <div className="w-[80vw] h-screen my-10 ml-4">
         <ChartExample appName={"System Wide Analysis"} height={"600px"} width={"100%"} />
+        <div className="flex flex-row align-middle items-center gap-2 my-3 w-full justify-end">
+        <FaSearch size={20} />
+          <Input className="w-[20%]" type={"text"} value={filter} onChange={handleFilterChange} placeholder="Search" />
+        </div>
         <Table>
           <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
@@ -51,14 +72,22 @@ const SystemAnalysis = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-          {data.map((row, index) => (
-            <TableRow key={index}>
-            <TableCell className="font-medium">{row.timestamp} </TableCell> 
-            <TableCell>{row.app_name}</TableCell>
-            <TableCell>{row.local_addr}</TableCell>
-            <TableCell className="text-left">{row.domain}</TableCell>
-          </TableRow>
-          ))}
+          {filteredData.length > 0 ? (
+              filteredData.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">{row.timestamp}</TableCell>
+                  <TableCell>{row.app_name}</TableCell>
+                  <TableCell>{row.local_addr}</TableCell>
+                  <TableCell className="text-left">{row.domain}</TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} className="text-center">
+                  No results found
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </div>

@@ -8,8 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import brave from '@/assets/Brave.png'
 
-const AppBox = ({ data }) => {
+const AppBox = ({data} ) => {
   return (
     <>
       <Link href={`/Dashboard/MainDashboard/${data.appName}`}>
@@ -18,7 +19,7 @@ const AppBox = ({ data }) => {
             height={100}
             width={100}
             className="rounded-xl"
-            src={null}
+            src={brave}
             alt={data.appName}
           />
           <CardHeader>

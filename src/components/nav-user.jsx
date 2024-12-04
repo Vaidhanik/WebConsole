@@ -80,10 +80,12 @@ export function NavUser({
                 Account
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator /> 
             <DropdownMenuItem>
               <LogOut />
+              <button onClick={"handleLogout"}>
               Log out
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

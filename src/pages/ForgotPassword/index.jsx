@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import Link from 'next/link';
 
 const  ForgotPassword= () => {
   return (
@@ -21,9 +22,9 @@ const  ForgotPassword= () => {
             <Input className="w-[300px]" type='email' placeholder="email id" />
         </CardContent>
         <CardFooter className="flex flex-col">
-           <a href="/Login" className="opacity-50">login</a> 
+           <Link href="/Login" className="opacity-50">login</Link> 
           <Button className="w-[100px] mt-2">
-            <a href="/ForgotPassword/opt">Send OTP</a>
+            <Link href="/ForgotPassword/opt">Send OTP</Link>
           </Button>
         </CardFooter>
       </Card>

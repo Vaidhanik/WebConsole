@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-const ExistingPolicy = ({ policy,url }) => {
+const ExistingPolicy = ( {policy,url} ) => {
   return (
     <div>
       <Card style={{
