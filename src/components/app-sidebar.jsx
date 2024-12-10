@@ -32,7 +32,7 @@ import { Separator } from "./ui/separator";
 // This is sample data.
 const data = {
   user: {
-    name: "Vaidanik",
+    name: "Vaidhanik",
     email: "vaidanik@gamil.com",
     avatar: "https://github.com/shadcn.png",
   },
@@ -70,7 +70,7 @@ export function AppSidebar({ ...props }) {
               </Avatar>
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold text-2xl">Vaidanik</span>
+                  <span className="font-semibold text-2xl">Vaidhanik</span>
                 </div>
               </a>
             </SidebarMenuButton>
