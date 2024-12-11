@@ -56,8 +56,8 @@ const SystemAnalysis = () => {
   };
   return (
     <Layout>
-      <div className="w-[80vw] h-full my-10 ml-4 shadow-xl p-6">
-        <ChartExample appName={"System Wide Analysis"} height={"600px"} width={"100%"} />
+      <div className="w-[80vw] h-screen my-10 ml-4">
+        <ChartExample appName={""} height={"600px"} width={"100%"} />
         <div className="flex flex-row align-middle items-center gap-2 my-3 w-full justify-end">
         <FaSearch size={20} />
           <Input className="w-[20%]" type={"text"} value={filter} onChange={handleFilterChange} placeholder="Search" />
