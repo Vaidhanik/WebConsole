@@ -99,14 +99,14 @@ export default function App() {
   return (
     <Layout>
       <div className="h-screen flex items-center justify-center p-6">
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-6">
           <div className="flex gap-2">
             <Select
               options={countryOptions}
               value={selectedCountry}
               onChange={setSelectedCountry}
               placeholder="Search Country"
-              className="w-[300px]"
+              className="w-[300px] text-black placeholder:text-black"
             />
             <Button onClick={handleBlockCountry} disabled={loading}>
               Block
@@ -114,7 +114,7 @@ export default function App() {
           </div>
           <div
             className="overflow-y-auto"
-            style={{ height: 350, border: "2px solid #efefef", borderRadius: 10 }}
+            style={{ height: 450, border: "2px solid #efefef", borderRadius: 10 }}
           >
             <GeoCard data={blockedCountries} />
           </div>
