@@ -1,78 +1,49 @@
-import React, { useState } from "react";
+"use client"
+
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { AgCharts } from "ag-charts-react";
+import { useDispatch, useSelector } from 'react-redux';
+import { setIp, selectIp } from '../store/features/ipSlice';
 
 const ChartExample = ({ appName,width,height }) => {
   console.log(appName);
+  const dispatch = useDispatch();
+  const currentIp = useSelector(selectIp);
 
-  function getLoungeData() {
-    return [
-      {
-        time: new Date("01 Jan 2020 13:25:30 GMT"),
-        sensor: 25,
-      },
-      {
-        time: new Date("01 Jan 2020 13:26:30 GMT"),
-        sensor: 24,
-      },
-      {
-        time: new Date("01 Jan 2020 13:27:30 GMT"),
-        sensor: 24,
-      },
-      {
-        time: new Date("01 Jan 2020 13:28:30 GMT"),
-        sensor: 23,
-      },
-      {
-        time: new Date("01 Jan 2020 13:29:30 GMT"),
-        sensor: 22.5,
-      },
-      {
-        time: new Date("01 Jan 2020 13:30:30 GMT"),
-        sensor: 21.5,
-      },
-      {
-        time: new Date("01 Jan 2020 13:31:30 GMT"),
-        sensor: 22.5,
-      },
-    ];
+  const [timestamps, setTimestamps] = useState(["01 Jan 2020 13:25:00 GMT", "02 Jan 2020 13:25:00 GMT", "02 Jan 2020 13:26:00 GMT", "02 Jan 2020 13:27:00 GMT", "03 Jan 2020 13:25:00 GMT"]);
+
+  const getData = async ()=>{
+    let url;
+    if(appName!=""){
+      //call the api for this app to get data for this app
+      url = "https://"+currentIp.ip + ":5000/data/graph"+appName;
+    }
+    else{
+      //otherwise get for all apps
+      url = "https://"+currentIp.ip+":5000/data/graph";
+    }
+    const res = await fetch(url);
+    setTimestamps(res.data)
   }
 
+
+  // useEffect(()=>{
+  //   getData()
+  // },[appName])
+
+
   function getOfficeData() {
-    return [
-      {
-        time: Date.parse("01 Jan 2020 13:25:00 GMT"),
-        sensor: 21,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:26:00 GMT"),
-        sensor: 22,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:28:00 GMT"),
-        sensor: 22,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:29:00 GMT"),
-        sensor: 23,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:30:00 GMT"),
-        sensor: 24,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:31:00 GMT"),
-        sensor: 24,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:32:00 GMT"),
-        sensor: 24.5,
-      },
-      {
-        time: Date.parse("01 Jan 2020 13:33:00 GMT"),
-        sensor: 24.5,
-      },
-    ];
+    let cumsum = 0;
+    const res = timestamps.map(t => {
+      cumsum++;
+      return{
+      time:Date.parse(t),
+      sensor:cumsum
+      }
+    })
+
+    return res;
   }
   const [options, setOptions] = useState({
     title: {
@@ -80,16 +51,10 @@ const ChartExample = ({ appName,width,height }) => {
     },
     series: [
       {
-        data: getLoungeData(),
-        xKey: "time",
-        yKey: "sensor",
-        yName: "Lounge",
-      },
-      {
         data: getOfficeData(),
         xKey: "time",
         yKey: "sensor",
-        yName: "Office",
+        yName: "activity",
       },
     ],
     axes: [
@@ -101,7 +66,7 @@ const ChartExample = ({ appName,width,height }) => {
         type: "number",
         position: "left",
         label: {
-          format: "#{.1f} °C",
+          format: "activity",
         },
       },
     ],
