@@ -57,6 +57,11 @@ const data = {
       icon: SquareTerminal,
     },
     {
+      title: "Firewall AI",
+      url: "/Dashboard/Ai-insides",
+      icon: Settings2,
+    },
+    {
       title: "Settings",
       url: "/Dashboard/Settings",
       icon: Settings2,

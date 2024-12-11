@@ -49,7 +49,8 @@ const SystemAnalysis = () => {
     // Update filtered data
     const newFilteredData = data.filter((item) =>
       item.app_name.toLowerCase().includes(value.toLowerCase()) ||
-      item.timestamp.toLowerCase().includes(value.toLowerCase())
+      item.timestamp.toLowerCase().includes(value.toLowerCase()) ||
+      item.domain.toLowerCase().includes(value.toLowerCase()) 
     );
     setFilteredData(newFilteredData);
   };
