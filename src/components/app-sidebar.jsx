@@ -12,6 +12,8 @@ import {
   SquareTerminal,
   Search,
   Bug,
+  ShieldAlert,
+  MapPinned
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { NavMain } from "@/components/nav-main";
@@ -59,7 +61,12 @@ const data = {
     {
       title: "Firewall AI",
       url: "/Dashboard/Ai-insides",
-      icon: Settings2,
+      icon: ShieldAlert,
+    },
+    {
+      title: "Geo Blocker",
+      url: "/Dashboard/Geo-Blocker",
+      icon: MapPinned,
     },
     {
       title: "Settings",
