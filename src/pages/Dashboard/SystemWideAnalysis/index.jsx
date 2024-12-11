@@ -37,6 +37,32 @@ const SystemAnalysis = () => {
       }
     };
 
+    /*
+    use this api to get the data instead:
+
+
+       const dispatch = useDispatch();
+    const currentIp = useSelector(selectIp);
+
+    const data = await fetch(url);
+
+    const fetchData = async ()=>{
+         try {
+        const url = "https://"+currentIp.ip+":5000/data"
+        const response = await fetch(url);
+        if (response.ok) {
+          const result = await response.json();
+          setData(result);
+          setFilteredData(result);
+        } else {
+          setError("Failed to fetch data");
+        }
+      } catch (err) {
+        setError("Error: " + err.message);
+      } 
+    }
+    */
+
     fetchData();
   }, []);
 
@@ -56,8 +82,8 @@ const SystemAnalysis = () => {
   };
   return (
     <Layout>
-      <div className="w-[80vw] h-full my-10 ml-4 shadow-xl p-6">
-        <ChartExample appName={"System Wide Analysis"} height={"600px"} width={"100%"} />
+      <div className="w-[80vw] h-screen my-10 ml-4">
+        <ChartExample appName={""} height={"600px"} width={"100%"} />
         <div className="flex flex-row align-middle items-center gap-2 my-3 w-full justify-end">
         <FaSearch size={20} />
           <Input className="w-[20%]" type={"text"} value={filter} onChange={handleFilterChange} placeholder="Search" />
