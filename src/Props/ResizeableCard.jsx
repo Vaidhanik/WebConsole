@@ -28,7 +28,7 @@ export function ResizableDemo({ remote, app, port, color, percentage }) {
         className="max-w-md gap-1 rounded-lg border-none shadow-xl md:min-w-[450px]"
       >
         <ResizablePanel defaultSize={50} className="border-2  rounded-lg"  >
-          <Card className="p-4 h-[100%] rounded-none shadow-xl flex flex-col justify-center align-middle gap-2" style={{border:"10px solid white"}}>
+          <Card className="p-4 h-[100%] rounded-none shadow-xl flex flex-col justify-center align-middle gap-2" >
             <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg">
               <p>Remote Address:{remote}</p>
             </CardContent>
@@ -54,7 +54,7 @@ export function ResizableDemo({ remote, app, port, color, percentage }) {
         <ResizablePanel defaultSize={50} className="border-2 shadow-xl  rounded-lg">
           <div
             className="flex h-[200px] items-center justify-center p-2"
-            style={{ backgroundColor: BackColor1 ? "green" : "red",border:"20px solid white",borderRadius:30 }}
+            style={{ backgroundColor: BackColor1 ? "green" : "red",borderRadius:10 }}
           >
             <span className="font-semibold text-xl ">Isolation Forest</span>
           </div>
@@ -62,7 +62,7 @@ export function ResizableDemo({ remote, app, port, color, percentage }) {
         <ResizablePanel defaultSize={50} className="border-2 shadow-xl  rounded-lg">
           <div
             className="flex h-[200px] items-center justify-center p-2 "
-            style={{ backgroundColor: BackColor2 ? "green" : "red",border:"20px solid white",borderRadius:30 }}
+            style={{ backgroundColor: BackColor2 ? "green" : "red",borderRadius:10 }}
           >
             <span className="font-semibold text-xl">LOF</span>
           </div>
@@ -70,7 +70,7 @@ export function ResizableDemo({ remote, app, port, color, percentage }) {
         <ResizablePanel defaultSize={50} className="border-2 shadow-xl  rounded-lg">
           <div
             className="flex h-[200px] items-center justify-center p-2"
-            style={{ backgroundColor: BackColor3 ? "green" : "red",border:"20px solid white",borderRadius:30 }}
+            style={{ backgroundColor: BackColor3 ? "green" : "red",borderRadius:10 }}
           >
             <span className="font-semibold text-xl">Auto Encoder</span>
           </div>

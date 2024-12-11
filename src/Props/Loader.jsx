@@ -39,8 +39,8 @@ const PercentageRing = ({ percentage }) => {
         />
       </svg>
       {/* Percentage Text */}
-      <span className="mt-4 text-xl font-bold" style={{ color: getRingColor(percentage) }}>
-        {percentage}%
+      <span className="mt-4 text-xl font-bold text-black dark:text-white" style={{ color: getRingColor(percentage) }}>
+        {`${percentage ? percentage : 0}%`}
       </span>
     </div>
   );

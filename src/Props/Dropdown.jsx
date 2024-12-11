@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function SelectForm() {
+export function SelectForm({setShowDemo}) {
   const form = useForm({
     defaultValues: {
       email: "",
@@ -30,14 +30,7 @@ export function SelectForm() {
   });
 
   function onSubmit(data) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+    setShowDemo(true);
   }
 
   return (
@@ -48,10 +41,10 @@ export function SelectForm() {
           name="time"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select the time </FormLabel>
+              <FormLabel className="text-black dark:text-white text-xl">Select the time </FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger >
+                  <SelectTrigger className="text-black dark:text-white" >
                     <SelectValue placeholder="Select time" />
                   </SelectTrigger>
                 </FormControl>
