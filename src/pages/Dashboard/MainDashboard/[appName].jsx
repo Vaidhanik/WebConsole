@@ -19,15 +19,15 @@ export default function DashboardPage() {
       <Head>
         <title>{appName}</title>
       </Head>
-      <div className="flex items-center justify-center align-middle">
-      <div className=" h-screen w-full mx-24 pt-12 flex flex-row align-middle justify-center gap-5">
-        <div className="my-6">
-            <AppBoxStatic  data={appName} />
+      <div className=" h-screen w-full flex items-center justify-center ">
+      <div className="pt-12 flex flex-col  justify-center gap-2">
+        <div className="my-6 gap-12">
+            <AppBoxStatic className="p-2"  data={appName} />
         </div>
-        <div className="flex flex-col gap-12 items-center justify-center w-[1000px]">
+        <div className="flex flex-col gap-12 items-center justify-center w-[100%]">
             <div>
                 {/* graph  */}
-                <ChartExample appName={appName} height={"400px"} width={"915px"}/>
+                <ChartExample appName={appName} height={"400px"} width={1000}/>
             </div>
             <div className="flex flex-row justify-between gap-6">
                 <div>

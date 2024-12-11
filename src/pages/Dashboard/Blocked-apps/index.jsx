@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../layout";
-import brave from "@/assets/Brave.png";
 import { Search, Subtitles } from "lucide-react";
 import Link from "next/link";
 import fs from "fs";
@@ -11,7 +10,9 @@ import { Separator } from "@/components/ui/separator";
 
 
 
-const MainDashboard = ({ apps }) => {
+
+
+const BlockedApps = ({ apps }) => {
   return (
     <>
       <Layout>
@@ -22,7 +23,7 @@ const MainDashboard = ({ apps }) => {
           </div>
           <Separator className="bg-gray-500 my-4 shadow-xl " />
           <div className=" h-[100%] w-full flex flex-col shadow-xl m-[25px] p-[25px] rounded-2xl border-10 ">
-            <h1 className="text-black font-semibold text-2xl py-2 my-2">Search Apps</h1>
+            <h1 className="text-black font-semibold text-2xl py-2 my-2">Blocked Apps</h1>
             <div className="grid grid-rows-3 grid-flow-col gap-8">
               {apps.map((app) => (
                 <div className="shadow-xl hover:shadow-2xl rounded-xl" key={app.appName}>
@@ -37,7 +38,7 @@ const MainDashboard = ({ apps }) => {
   );
 };
 
-export default MainDashboard;
+export default BlockedApps;
 
 export async function getStaticProps() {
   try {

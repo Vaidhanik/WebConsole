@@ -10,6 +10,8 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  Search,
+  Bug,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { NavMain } from "@/components/nav-main";
@@ -25,9 +27,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import TeamInfoBox from "@/Props/TeamInfoBox";
 import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 // This is sample data.
 const data = {
@@ -38,9 +42,14 @@ const data = {
   },
   navMain: [
     {
-        title: "Main Dashboard",
-        url: "/Dashboard/MainDashboard",
-        icon: BookOpen,
+      title: "Search Apps",
+      url: "/Dashboard/MainDashboard",
+      icon: Search,
+    },
+    {
+      title: "Blocked App",
+        url: "/Dashboard/Blocked-apps",
+        icon: Bug,
     },
     {
       title: "System wide analysis",
@@ -62,7 +71,7 @@ export function AppSidebar({ ...props }) {
       <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link href="/">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src="https://github.com/shadcn.png"/>
@@ -70,9 +79,9 @@ export function AppSidebar({ ...props }) {
               </Avatar>
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold text-2xl">Vaidhanik</span>
+                  <span className="font-semibold text-2xl">FIREWALL</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

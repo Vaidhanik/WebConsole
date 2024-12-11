@@ -12,13 +12,12 @@ import brave from '@/assets/Brave.png'
 const AppBoxStatic = ({data}) => {
   return (
     <div>
-      <Card className="flex flex-row " style={{
-        width:"300px",height:"150px"
+      <Card className="flex flex-row items-center " style={{
+        width:"300px",height:"50px"
       }}>
-          <Image  height={100} width={150} className="rounded-xl m-2" src={brave}  alt={data} />
-      <CardHeader>
-          <CardTitle className="text-2xl">{data}</CardTitle>
-          <CardDescription>{data}</CardDescription>
+          <Image  height={40} width={40} className="rounded-xl m-2" src={brave}  alt={data} />
+      <CardHeader >
+          <CardTitle className="text-lg">{data}</CardTitle>
       </CardHeader>
       </Card>
     </div>

@@ -14,17 +14,9 @@ const AppBox = ({data} ) => {
   return (
     <>
       <Link href={`/Dashboard/MainDashboard/${data.appName}`}>
-        <Card className="flex flex-row h-[100px] w-[250px] ">
-          <Image
-            height={100}
-            width={100}
-            className="rounded-xl"
-            src={brave}
-            alt={data.appName}
-          />
+        <Card className="flex flex-row h-[100px] w-[250px]">
           <CardHeader>
             <CardTitle className="text-lg">{data.appName}</CardTitle>
-            <CardDescription>{data.services}</CardDescription>
           </CardHeader>
         </Card>
       </Link>
