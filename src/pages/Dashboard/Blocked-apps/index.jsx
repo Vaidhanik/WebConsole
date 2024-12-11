@@ -7,6 +7,7 @@ import path from "path";
 import AppBox from "@/Props/AppBox";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { useDispatch, useSelector } from "react-redux";
 
 
 
@@ -85,6 +86,21 @@ export async function getStaticProps() {
     return {
       props: { apps },
     };
+
+    //just call an api man
+    //remove everything above 
+
+    const dispatch = useDispatch();
+    const currentIp = useSelector(selectIp);
+
+    const url = "https://"+currentIp.ip+":5000/apps"
+    const data = await fetch(url);
+
+    let appnames = data.res;
+
+    return {
+      props: {appnames}
+    }
   } catch (error) {
     console.error("Error reading or parsing CSV:", error);
     return {

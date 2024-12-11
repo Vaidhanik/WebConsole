@@ -37,6 +37,32 @@ const SystemAnalysis = () => {
       }
     };
 
+    /*
+    use this api to get the data instead:
+
+
+       const dispatch = useDispatch();
+    const currentIp = useSelector(selectIp);
+
+    const data = await fetch(url);
+
+    const fetchData = async ()=>{
+         try {
+        const url = "https://"+currentIp.ip+":5000/data"
+        const response = await fetch(url);
+        if (response.ok) {
+          const result = await response.json();
+          setData(result);
+          setFilteredData(result);
+        } else {
+          setError("Failed to fetch data");
+        }
+      } catch (err) {
+        setError("Error: " + err.message);
+      } 
+    }
+    */
+
     fetchData();
   }, []);
 
