@@ -1,19 +1,12 @@
 import * as React from "react";
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
   Settings2,
   SquareTerminal,
   Search,
   Bug,
   ShieldAlert,
-  MapPinned
+  MapPinned,
+  Monitor
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { NavMain } from "@/components/nav-main";
@@ -46,6 +39,11 @@ const data = {
   },
   navMain: [
     {
+      title: "Select Machine",
+      url: "/Dashboard",
+      icon: Monitor,
+    },
+    {
       title: "Search Apps",
       url: "/Dashboard/MainDashboard",
       icon: Search,
@@ -56,9 +54,20 @@ const data = {
         icon: Bug,
     },
     {
-      title: "System wide analysis",
-      url: "/Dashboard/SystemWideAnalysis",
+      title: "Global System",
+      url: "#",
       icon: SquareTerminal,
+      isActive: false,
+      items: [
+        {
+          title: "Global Blocking",
+          url: "/Dashboard/Global-analysis/Global-blocking",        },
+        {
+          title: "Global Analysis",
+          url: "/Dashboard/Global-analysis",
+  
+        },
+      ],
     },
     {
       title: "Firewall AI",
@@ -106,10 +115,10 @@ export function AppSidebar({ ...props }) {
       <Separator className="w-[80%] mx-[10%]" />
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <p>{currentIp ? `SELECTED MACHINE: ${currentIp.ip}` : "NO MACHINE SELECTED. WARNING: ALL COMMANDS WILL EXECUTE ACROSS THE SYSTEM"}</p>
       </SidebarContent>
       {/* <Separator className="w-[80%] mx-[10%]" /> */}
       <SidebarFooter>
+        <p className="text-[14px]">{currentIp ? `SELECTED MACHINE: ${currentIp.ip}` : "running on GLOBAL SYSTEM..."}</p>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />

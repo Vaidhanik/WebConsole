@@ -68,7 +68,7 @@ export default function Home() {
             <Link href={"/Login"}>Login</Link>
           </Button>
           <Button className="bg-white text-black hover:text-white text-3xl p-8">
-            <Link href={"/Dashboard/MainDashboard"}>Get Started</Link>
+            <Link href={"/Dashboard"}>Get Started</Link>
           </Button>
 
           </div>

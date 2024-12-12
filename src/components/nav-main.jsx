@@ -18,8 +18,11 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIp } from "@/store/features/ipSlice";
 
 export function NavMain({ items }) {
+  
   return (
     <SidebarGroup>
       {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
@@ -37,12 +40,14 @@ export function NavMain({ items }) {
                   <SidebarMenuButton tooltip={item.title}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
-                    {/* <ChevronRight
-                    className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" /> */}
+                    {item.title === "Global System" &&(
+
+                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                    )}
                   </SidebarMenuButton>
                 </Link>
               </CollapsibleTrigger>
-              {/* <CollapsibleContent>
+              <CollapsibleContent>
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
@@ -54,11 +59,12 @@ export function NavMain({ items }) {
                     </SidebarMenuSubItem>
                   ))}
                 </SidebarMenuSub>
-              </CollapsibleContent> */}
+              </CollapsibleContent>
             </SidebarMenuItem>
           </Collapsible>
         ))}
       </SidebarMenu>
+      
     </SidebarGroup>
   );
 }
