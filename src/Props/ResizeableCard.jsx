@@ -1,6 +1,7 @@
+import React from "react";
 import {
-  ResizableHandle,
   ResizablePanel,
+  ResizableHandle,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import AIDataCard from "./AIDataCard";
@@ -8,6 +9,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import PercentageRing from "./Loader";
+import { 
+    AlertCircle, 
+    Check, 
+    X, 
+    Network, 
+    Server, 
+    Code 
+  } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function ResizableDemo({ remote, app, port, color, percentage }) {
   const [BackColor1, SetBackColor1] = useState(false);
@@ -22,59 +32,98 @@ export function ResizableDemo({ remote, app, port, color, percentage }) {
   };
 
   return (
-    <div className="flex gap-4 flex-col ">
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="max-w-md gap-1 rounded-lg border-none shadow-xl md:min-w-[450px]"
+    <div className="flex gap-4 flex-col max-w-xl mx-auto">
+      <ResizablePanelGroup 
+        direction="horizontal" 
+        className="rounded-lg border shadow-xl md:min-w-[450px]"
       >
-        <ResizablePanel defaultSize={50} className="border-2  rounded-lg"  >
-          <Card className="p-4 h-[100%] rounded-none shadow-xl flex flex-col justify-center align-middle gap-2" >
-            <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg">
-              <p>Remote Address:{remote}</p>
-            </CardContent>
-            <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg">
-              <p>App Name:{app}</p>
-            </CardContent>
-            <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg">
-              <p>Local Port:{port}</p>
-            </CardContent>
+        <ResizablePanel defaultSize={50} className="border-2 rounded-lg">
+          <Card className="p-4 h-full rounded-none shadow-xl flex flex-col justify-center gap-4">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg flex items-center gap-3">
+                    <Network className="h-4 w-4 mr-2 text-blue-500" />
+                    <span>Remote Address: {remote}</span>
+                  </CardContent>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Network endpoint details</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg flex items-center gap-3">
+                    <Code className="h-4 w-4 mr-2 text-green-500" />
+                    <span>App Name: {app}</span>
+                  </CardContent>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Application identification</p>
+                </TooltipContent>
+              </Tooltip>
+              
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <CardContent className="p-4 font-semibold text-lg border-2 border-slate-400 rounded-lg flex items-center gap-3">
+                    <Server className="h-4 w-4 mr-2 text-purple-500" />
+                    <span>Local Port: {port}</span>
+                  </CardContent>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Local network port</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </Card>
         </ResizablePanel>
-        <ResizablePanel defaultSize={50} className="border-2  rounded-lg">
-          <div className="flex h-[200px] items-center shadow-xl justify-center align-middle p-6 " style={{backgroundColor:getBackgroundColor(percentage)}}>
-            {/* <h1 className="text-[100px]" style={{fontSize:"100px",borderRadius:"100%"}}>100%</h1> */}
+        
+        <ResizableHandle withHandle />
+        
+        <ResizablePanel defaultSize={50} className="border-2 rounded-lg">
+          <div 
+            className={`flex h-full items-center justify-center p-6 ${getBackgroundColor(percentage)}`}
+          >
             <PercentageRing percentage={percentage} />
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
-      <ResizablePanelGroup
-        direction="horizontal"
-        className="max-w-md rounded-lg gap-1 border-none  md:min-w-[450px]"
+
+      <ResizablePanelGroup 
+        direction="horizontal" 
+        className="rounded-lg border shadow-xl md:min-w-[450px]"
       >
-        <ResizablePanel defaultSize={50} className="border-2 shadow-xl  rounded-lg">
-          <div
-            className="flex h-[200px] items-center justify-center p-2"
-            style={{ backgroundColor: BackColor1 ? "green" : "red",borderRadius:10 }}
-          >
-            <span className="font-semibold text-xl ">Isolation Forest</span>
-          </div>
-        </ResizablePanel>
-        <ResizablePanel defaultSize={50} className="border-2 shadow-xl  rounded-lg">
-          <div
-            className="flex h-[200px] items-center justify-center p-2 "
-            style={{ backgroundColor: BackColor2 ? "green" : "red",borderRadius:10 }}
-          >
-            <span className="font-semibold text-xl">LOF</span>
-          </div>
-        </ResizablePanel>
-        <ResizablePanel defaultSize={50} className="border-2 shadow-xl  rounded-lg">
-          <div
-            className="flex h-[200px] items-center justify-center p-2"
-            style={{ backgroundColor: BackColor3 ? "green" : "red",borderRadius:10 }}
-          >
-            <span className="font-semibold text-xl">Auto Encoder</span>
-          </div>
-        </ResizablePanel>
+        {[
+          { name: "Isolation Forest", active: BackColor1 },
+          { name: "LOF", active: BackColor2 },
+          { name: "Auto Encoder", active: BackColor3 }
+        ].map((algo, index) => (
+          <React.Fragment key={algo.name}>
+            <ResizablePanel 
+              defaultSize={33} 
+              className={`border-2 rounded-lg ${algo.active ? 'hover:bg-green-50' : 'hover:bg-red-50'}`}
+            >
+              <div
+                className={`flex h-[200px] items-center justify-center p-2 rounded-lg transition-all duration-300 
+                  ${algo.active ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}
+                `}
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <span className="font-semibold text-xl">{algo.name}</span>
+                  <Badge variant={algo.active ? "default" : "destructive"}>
+                    {algo.active ? (
+                      <><Check className="mr-2 h-4 w-4" /> Active</>
+                    ) : (
+                      <><X className="mr-2 h-4 w-4" /> Inactive</>
+                    )}
+                  </Badge>
+                </div>
+              </div>
+            </ResizablePanel>
+            {index < 2 && <ResizableHandle  />}
+          </React.Fragment>
+        ))}
       </ResizablePanelGroup>
     </div>
   );

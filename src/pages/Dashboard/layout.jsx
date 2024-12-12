@@ -17,7 +17,7 @@ export default function Layout({ children }) {
           disableTransitionOnChange
         >
           <div
-            className=" h-screen w-full bg-white dark:bg-black"
+            className=" h-full w-full bg-white dark:bg-black"
             style={{
               borderRadius: "20px 10px",
             }}
@@ -30,7 +30,7 @@ export default function Layout({ children }) {
                   <ModeToggle />
                 </div>
               </div>
-              <main className="h-screen w-full py-2 bg-white dark:bg-black">{children}</main>
+              <main className="h-full w-full py-2 bg-white dark:bg-black">{children}</main>
               <div className="mx-3"></div>
             </SidebarProvider>
           </div>
