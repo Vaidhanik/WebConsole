@@ -11,9 +11,11 @@ import { selectIp } from "@/store/features/ipSlice";
 
 const BlockedApps = () => {
   const [apps, setApps] = useState([]);
+  const [filteredApps, setFilteredApps] = useState([]); 
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
   const currentIp = useSelector(selectIp);
-
+console.log(apps)
   useEffect(() => {
     console.log('Component mounted or currentIp changed');
     console.log('Current IP state:', currentIp);
@@ -59,6 +61,22 @@ const BlockedApps = () => {
     fetchApps();
   }, [currentIp]);
 
+  useEffect(() => {
+    console.log("Filtering apps based on search query:", searchQuery);
+
+    if (!searchQuery.trim()) {
+      // Show all apps if search query is empty
+      setFilteredApps(apps);
+      return;
+    }
+
+    const filtered = apps.filter((app) =>
+      app && 
+      app.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredApps(filtered);
+  }, [searchQuery, apps]);
+
   // Add loading state debug
   console.log('Current loading state:', loading);
   console.log('Current apps state:', apps);
@@ -83,6 +101,8 @@ const BlockedApps = () => {
         <div className="w-full px-6 flex flex-row align-middle items-center p-3 rounded-2xl shadow-lg hover:shadow-xl">
           <Input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10 py-2 border rounded-md w-full bg-no-repeat bg-left bg-[length:20px_20px] 
             dark:bg-[url('https://img.icons8.com/ios-glyphs/30/ffffff/search--v1.png')] 
             bg-[url('https://img.icons8.com/ios-glyphs/30/000000/search--v1.png')]"
@@ -92,17 +112,20 @@ const BlockedApps = () => {
         <Separator className="bg-gray-500 my-4 shadow-xl " />
         <div className="h-[100%] w-full flex flex-col shadow-xl m-[25px] p-[25px] rounded-2xl border-10 ">
           <h1 className="text-black font-semibold text-2xl py-2 my-2">
-            Blocked Apps ({apps.length})
+            Blocked Apps ({filteredApps.length})
           </h1>
-          <div className="grid grid-rows-3 grid-flow-col gap-8">
-            {Array.isArray(apps) ? (
-              apps.map((app) => (
-                <div className="shadow-xl hover:shadow-2xl rounded-xl" key={app.appName}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {Array.isArray(filteredApps) && filteredApps.length > 0 ? (
+              filteredApps.map((app) => (
+                <div
+                  className="shadow-xl hover:shadow-2xl w-[250px] rounded-xl"
+                  key={app.appName}
+                >
                   <AppBox data={app} />
                 </div>
               ))
             ) : (
-              <p>No apps data available</p>
+              <p>No matching apps found</p>
             )}
           </div>
         </div>

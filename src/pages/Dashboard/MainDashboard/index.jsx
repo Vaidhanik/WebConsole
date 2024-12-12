@@ -78,14 +78,14 @@ const MainDashboard = ({ apps }) => {
 
         <Separator className="bg-primary/50" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredApps.length > 0 ? (
             filteredApps.map((app) => (
               <div 
                 key={app.appName} 
                 className="transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
-                <AppBox data={app} />
+                <AppBox data={app.appName} />
               </div>
             ))
           ) : (
