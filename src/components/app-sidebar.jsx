@@ -34,6 +34,8 @@ import {
 import TeamInfoBox from "@/Props/TeamInfoBox";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIp } from "@/store/features/ipSlice";
 
 // This is sample data.
 const data = {
@@ -77,6 +79,9 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const dispatch = useDispatch();
+  const currentIp = useSelector(selectIp);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="flex flex-row align-middle items-center text-2xl">
@@ -101,6 +106,7 @@ export function AppSidebar({ ...props }) {
       <Separator className="w-[80%] mx-[10%]" />
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <p>{currentIp ? `SELECTED MACHINE: ${currentIp.ip}` : "NO MACHINE SELECTED. WARNING: ALL COMMANDS WILL EXECUTE ACROSS THE SYSTEM"}</p>
       </SidebarContent>
       {/* <Separator className="w-[80%] mx-[10%]" /> */}
       <SidebarFooter>

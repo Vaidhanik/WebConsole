@@ -41,7 +41,7 @@ const SystemAnalysis = () => {
     use this api to get the data instead:
 
 
-       const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const currentIp = useSelector(selectIp);
 
     const data = await fetch(url);

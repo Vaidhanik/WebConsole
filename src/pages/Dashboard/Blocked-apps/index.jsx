@@ -10,9 +10,6 @@ import { Separator } from "@/components/ui/separator";
 import { useDispatch, useSelector } from "react-redux";
 
 
-
-
-
 const BlockedApps = ({ apps }) => {
   return (
     <>

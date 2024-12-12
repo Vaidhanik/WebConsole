@@ -84,6 +84,22 @@ export async function getStaticProps() {
     return {
       props: { apps },
     };
+
+
+    //just call an api man
+    //remove everything above 
+
+    const dispatch = useDispatch();
+    const currentIp = useSelector(selectIp);
+
+    const url = "https://"+currentIp.ip+":5000/apps"
+    const data = await fetch(url);
+    const appnames = await data.json();
+
+    return {
+      props: {appnames}
+    }
+
   } catch (error) {
     console.error("Error reading or parsing CSV:", error);
     return {
