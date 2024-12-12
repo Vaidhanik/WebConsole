@@ -11,17 +11,17 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-const ExistingPolicy = ( {policy,url} ) => {
+const ExistingPolicy = ( {rule} ) => {
 
   const [rules, setRules] = useState([]);
   
   return (
     <div>
       <Card style={{
-       height:"450px", width:"450px"
+       height:"140px", width:"450px"
       }}>
         <CardHeader>
-          <CardTitle>Existing Policies</CardTitle>
+          <CardTitle>Existing Policy</CardTitle>
         </CardHeader>
         <CardContent className="gap-2">
           <div>

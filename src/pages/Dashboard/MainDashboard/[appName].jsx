@@ -14,8 +14,41 @@ export default function DashboardPage() {
   const router = useRouter();
   const { appName } = router.query; // Get the dynamic route parameter
 
-  const [rules, setRules] = useState([])
   // Define app-specific titles and details
+  /*
+  Id
+  app_name,
+  taget
+  target_type,
+  resolved_ips
+  */
+  //api call to get all data from the backend
+  const dispatch = useDispatch();
+  const currentIp = useSelector(selectIp);
+
+ const dummy_policy = {
+   Id: 12,
+   app_name: "Chrome",
+   target: "x.com",
+   target_type: "domain",
+   resolved_ips: ["fnerknf", "feldkfnme", "felfn"]
+ }
+  const [rules, setRules] = useState([dummy_policy])
+
+  const getAllRules = async ()=>{
+    if(!currentIp) return;
+    try{
+
+    const url = "https://"+currentIp+":5000/get_active_rules/"+{appName};
+    const response = await fetch(url);
+    const result = await response.json();
+
+    setRules(res);
+  }catch(err){
+    res.status(500).json({"error": "could not get all data"})
+  }
+} 
+
 
 
   return (
@@ -41,7 +74,13 @@ export default function DashboardPage() {
                 <div>
                     {/* define existing policy apis to change or to view */}
                     {/* multiple apis list need to mapped as dta of apis is not available just one demo policy is shown */}
-                    <ExistingPolicy policy={"lorem epsom"} url={`/path/${appName}`}/>
+                    {
+                      rules.map((rule) => {
+                        return (
+                          <ExistingPolicy policy={rule} />
+                        );
+                      })
+                    }
                 </div>
             </div>
         </div>
