@@ -113,7 +113,7 @@ export function AppSidebar({ ...props }) {
       </SidebarContent>
       {/* <Separator className="w-[80%] mx-[10%]" /> */}
       <SidebarFooter>
-        <p className="text-[14px]">{currentIp ? `SELECTED MACHINE: ${currentIp.ip}` : "running on GLOBAL SYSTEM..."}</p>
+        <p className="text-[14px]">{currentIp ? `SELECTED MACHINE: ${currentIp}` : "running on GLOBAL SYSTEM..."}</p>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
