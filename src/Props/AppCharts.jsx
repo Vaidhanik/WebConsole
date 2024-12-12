@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { createRoot } from "react-dom/client";
 import { AgCharts } from "ag-charts-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { setIp, selectIp } from '../store/features/ipSlice';
@@ -45,40 +44,53 @@ const ChartExample = ({ appName,width,height }) => {
 
     return res;
   }
-  const [options, setOptions] = useState({
-    title: {
-      text: appName,
-    },
+  const Options = {
+    title: { text: `${appName} Activity` },
     series: [
       {
-        data: getOfficeData(),
-        xKey: "time",
-        yKey: "sensor",
-        yName: "activity",
+        type: 'line',
+        xKey: 'time',
+        yKey: 'activity',
+        yName: 'Activity Level',
+        stroke: 'var(--primary)',
+        marker: { 
+          fill: 'var(--primary)',
+          stroke: 'var(--primary)' 
+        }
       },
+      {
+        type: 'line',
+        xKey: 'time',
+        yKey: 'connections',
+        yName: 'Connections',
+        stroke: 'var(--destructive)',
+        marker: { 
+          fill: 'var(--destructive)',
+          stroke: 'var(--destructive)' 
+        }
+      }
     ],
     axes: [
       {
-        type: "time",
-        position: "bottom",
+        type: 'time',
+        position: 'bottom',
+        title: { text: 'Time' }
       },
       {
-        type: "number",
-        position: "left",
-        label: {
-          format: "activity",
-        },
-      },
-    ],
-  });
+        type: 'number',
+        position: 'left',
+        title: { text: 'Metrics' }
+      }
+    ]
+  };
 
   return (
     <>
       {/* <div className="h-[800px] w-[1000px]"> */}
       <AgCharts
         className="chart"
-        style={{ width: width, height: height,border:"solid 10px white",borderRadius:"8px" }}
-        options={options}
+        style={{ width: "full", height: "full",border:"solid 10px white",borderRadius:"8px" }}
+        options={Options}
       />
       {/* <div id="chartContainer" style={{height: 370,width:"100%" }} /> */}
       {/* </div> */}

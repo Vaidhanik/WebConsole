@@ -53,7 +53,9 @@ const AddPolicy = (appName) => {
 
   return (
     <div>
-      <Card style={{height:"450px",width:"450px"}}>
+      <Card 
+       style={{height:"450px",width:"600px"}}
+       >
         <CardHeader>
           <CardTitle>Policy</CardTitle>
           <CardDescription>Add/Update Policy</CardDescription>

@@ -1,6 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import Layout from "../layout";
-import { Search, Subtitles } from "lucide-react";
+import { Search, Filter, X } from "lucide-react";
 import Link from "next/link";
 import AppBox from "@/Props/AppBox";
 import { Input } from "@/components/ui/input";
