@@ -22,8 +22,8 @@ const AddPolicy = (appName) => {
   const [target, setTarget] = useState();
 
   const addRule = async ()=>{
-    if(currentIp=="") return;
-    const url = "http://"+currentIp.ip+":5000/rules/";
+    if(!currentIp) return;
+    const url = "http://"+currentIp+":5000/block-target/";
     
     try {
       const response = await fetch(url, {

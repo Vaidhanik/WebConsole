@@ -112,6 +112,41 @@ export default function DashboardPage() {
   });
   const [searchTerm, setSearchTerm] = useState('');
 
+
+  // Define app-specific titles and details
+  /*
+  Id
+  app_name,
+  taget
+  target_type,
+  resolved_ips
+  */
+  //api call to get all data from the backend
+  const dispatch = useDispatch();
+  const currentIp = useSelector(selectIp);
+
+ const dummy_policy = {
+   Id: 12,
+   app_name: "Chrome",
+   target: "x.com",
+   target_type: "domain",
+   resolved_ips: ["fnerknf", "feldkfnme", "felfn"]
+ }
+  const [rules, setRules] = useState([dummy_policy])
+
+  const getAllRules = async ()=>{
+    if(!currentIp) return;
+    try{
+
+    const url = "https://"+currentIp+":5000/get_active_rules/"+{appName};
+    const response = await fetch(url);
+    const result = await response.json();
+
+    setRules(res);
+  }catch(err){
+    res.status(500).json({"error": "could not get all data"})
+  }
+} 
   // Fetch data function
   const fetchData = async () => {
     // Simulated data - replace with actual API call
@@ -210,24 +245,27 @@ export default function DashboardPage() {
             </DropdownMenu>
           </div>
         </div>
-
-        {/* Chart and Policies */}
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
-          {/* Chart Card */}
-          <Card className="lg:col-span-2">
-            <CardHeader>
-              <CardTitle>Activity Overview</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ChartExample />
-            </CardContent>
-          </Card>
-
-          {/* Policies Column */}
-          <div className="w-full grid lg:grid-row-1 lg:grid-flow-col align-middle justify-between ">
-            <AddPolicy appName={appName} />
-            <ExistingPolicy policy="Default Policy" url={`/policy/${appName}`} />
-          </div>
+        <div className="flex flex-col gap-12 items-center justify-center w-[100%]">
+            <div>
+                {/* graph  */}
+                <ChartExample appName={appName} height={"400px"} width={1000}/>
+            </div>
+            <div className="flex flex-row justify-between gap-6">
+                <div>
+                    <AddPolicy appName={appName} />
+                </div>
+                <div>
+                    {/* define existing policy apis to change or to view */}
+                    {/* multiple apis list need to mapped as dta of apis is not available just one demo policy is shown */}
+                    {
+                      rules.map((rule) => {
+                        return (
+                          <ExistingPolicy policy={rule} />
+                        );
+                      })
+                    }
+                </div>
+            </div>
         </div>
 
         {/* Data Table */}

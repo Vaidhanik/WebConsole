@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-const ExistingPolicy = ( {policy,url} ) => {
+const ExistingPolicy = ( {rule} ) => {
 
   const [rules, setRules] = useState([]);
   
@@ -22,7 +22,7 @@ const ExistingPolicy = ( {policy,url} ) => {
       }}
       className="p-2">
         <CardHeader>
-          <CardTitle>Existing Policies</CardTitle>
+          <CardTitle>Existing Policy</CardTitle>
         </CardHeader>
         <CardContent className="gap-2 border-2 border-black rounded-lg p-2">
           <div>
