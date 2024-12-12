@@ -98,6 +98,8 @@ import ExistingPolicy from "@/Props/ExistingPolicy";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import ChartExample from "@/Props/AppCharts";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIp } from "@/store/features/ipSlice";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -246,9 +248,9 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="flex flex-col gap-12 items-center justify-center w-[100%]">
-            <div>
+            <div className="w-full">
                 {/* graph  */}
-                <ChartExample appName={appName} height={"400px"} width={1000}/>
+                <ChartExample appName={appName}/>
             </div>
             <div className="flex flex-row justify-between gap-6">
                 <div>
@@ -260,7 +262,7 @@ export default function DashboardPage() {
                     {
                       rules.map((rule) => {
                         return (
-                          <ExistingPolicy policy={rule} />
+                          <ExistingPolicy rule={rule} />
                         );
                       })
                     }

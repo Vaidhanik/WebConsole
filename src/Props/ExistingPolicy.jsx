@@ -31,8 +31,8 @@ const ExistingPolicy = ( {rule} ) => {
 
                 <ul className="grid grid-col-1 grid-flow-row align-middle">
                   <div className="flex flex-row">
-                  <p className="text-lg w-full flex align-middle items-center">{policy}</p>
-                  <Link href={`${url}`}><Button>Unblock</Button></Link>
+                  <p className="text-lg w-full flex align-middle items-center">{rule.app_name}</p>
+                  <Link href={`${rule.target}`}><Button>Unblock</Button></Link>
                   </div>
                 </ul>
               </div>

@@ -89,7 +89,7 @@ const ChartExample = ({ appName,width,height }) => {
       {/* <div className="h-[800px] w-[1000px]"> */}
       <AgCharts
         className="chart"
-        style={{ width: "full", height: "full",border:"solid 10px white",borderRadius:"8px" }}
+        style={{ width: "full", height: "500px",border:"solid 10px white",borderRadius:"8px" }}
         options={Options}
       />
       {/* <div id="chartContainer" style={{height: 370,width:"100%" }} /> */}
