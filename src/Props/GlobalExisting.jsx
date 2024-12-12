@@ -30,13 +30,13 @@ const GlobalExistingPolicy = ( {policy,url} ) => {
               <div className="space-y-1">
 
                 <ul
-                  style={{
-                    listStyleType: "disc",
-                  }}
+                 className="grid grid-col-1 grid-flow-row align-middle"
                 >
-                  <li>
-                    <Link href={url}>{policy}</Link>
-                  </li>
+
+                  <div className="flex flex-row">
+                  <p className="text-lg w-full flex align-middle items-center">{policy}</p>
+                  <Link href={`${url}`}><Button>Unblock</Button></Link>
+                  </div>                  
                 </ul>
               </div>
             </div>

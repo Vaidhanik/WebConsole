@@ -78,12 +78,7 @@ const data = {
       title: "Geo Blocker",
       url: "/Dashboard/Geo-Blocker",
       icon: MapPinned,
-    },
-    {
-      title: "Settings",
-      url: "/Dashboard/Settings",
-      icon: Settings2,
-    },
+    }
   ],
 };
 
