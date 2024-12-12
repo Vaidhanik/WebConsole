@@ -6,12 +6,17 @@ import LineChart from "@/Props/AppCharts";
 import ChartExample from "@/Props/AppCharts";
 import AddPolicy from "@/Props/AddPolicy";
 import ExistingPolicy from "@/Props/ExistingPolicy";
+import { useDispatch, useSelector } from "react-redux";
+import { selectIp } from "@/store/features/ipSlice";
+import { useState } from "react";
 
 export default function DashboardPage() {
   const router = useRouter();
   const { appName } = router.query; // Get the dynamic route parameter
 
+  const [rules, setRules] = useState([])
   // Define app-specific titles and details
+
 
   return (
     <Layout>
@@ -31,7 +36,7 @@ export default function DashboardPage() {
             </div>
             <div className="flex flex-row justify-between gap-6">
                 <div>
-                    <AddPolicy />
+                    <AddPolicy appName={appName} />
                 </div>
                 <div>
                     {/* define existing policy apis to change or to view */}
