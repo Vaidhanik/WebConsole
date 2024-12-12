@@ -34,7 +34,7 @@ const BlockedApps = () => {
           return;
         }
 
-        const url = `http://${currentIp.ip}:5000/apps`;
+        const url = `http://${currentIp}:5000/apps`;
         console.log('Attempting to fetch from:', url);
 
         const response = await fetch(url);
@@ -43,7 +43,7 @@ const BlockedApps = () => {
         const data = await response.json();
         console.log('Fetched data:', data);
         
-        setApps(data);
+        setApps(data.apps);
         console.log('Apps state updated');
       } catch (error) {
         console.error('Error details:', {

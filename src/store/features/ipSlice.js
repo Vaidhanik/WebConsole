@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+  ip: "192.168.7.204"
   // ip:{
   //   ip: "192.168.7.204",
   //   mac: "abhinav mac"
   // }
-  ip: null
+  // ip: null
 };
 
 const ipSlice = createSlice({
